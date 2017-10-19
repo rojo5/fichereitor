@@ -42,8 +42,8 @@ public class InterfazSecuencial extends javax.swing.JFrame {
     }
 
     public void leerFichero(String archivo) {
-        String texto = new String();
-        String aux = new String();
+        String texto = "";
+        String aux = "";
         try {
 
             FileReader fr = new FileReader(archivo);
@@ -64,25 +64,26 @@ public class InterfazSecuencial extends javax.swing.JFrame {
     }
 
     public void buscarFichero(String archivo) {
-        String texto = new String();
+        String texto = "";
         String textoABuscar = jTextField2.getText();
 
         try {
             FileReader fr = new FileReader(archivo);
             BufferedReader entrada = new BufferedReader(fr);
-            String linea = new String();
-            
+            String linea = "";
+            Boolean chivato = false;
             while((linea = entrada.readLine()) != null){
                 
                 
                 if(linea.contains(textoABuscar)){
                     //jTextArea1.setText(texto += texto + "\n");
                     texto += linea + "\n";
-                }
-                else{
-                    texto = "NO SE ENCUENTRA LA PALABRA";
+                    chivato = true;
                 }
                 
+                if(chivato == false){
+                    texto = "NO SE ENCUENTRA LA PALABRA";
+                }
                 
             }
             jTextArea1.setText(texto);
@@ -107,14 +108,13 @@ public class InterfazSecuencial extends javax.swing.JFrame {
         jTextField2 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
+        jDialog2 = new javax.swing.JDialog();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jComboBox1 = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-
-        jTextField2.setText("jTextField2");
 
         jLabel2.setText("Texto a buscar:");
 
@@ -148,6 +148,17 @@ public class InterfazSecuencial extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(40, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jDialog2Layout = new javax.swing.GroupLayout(jDialog2.getContentPane());
+        jDialog2.getContentPane().setLayout(jDialog2Layout);
+        jDialog2Layout.setHorizontalGroup(
+            jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 646, Short.MAX_VALUE)
+        );
+        jDialog2Layout.setVerticalGroup(
+            jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 303, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -254,6 +265,7 @@ public class InterfazSecuencial extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     public static javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JDialog jDialog1;
+    private javax.swing.JDialog jDialog2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
