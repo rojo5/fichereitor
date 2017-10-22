@@ -13,6 +13,7 @@ public class InterfazSeleccion extends javax.swing.JFrame {
     
     InterfazSecuencial interfazSecuencial = new InterfazSecuencial();
     InterfazCrear interfazCrear = new InterfazCrear();
+    InterfazCopiar interfazCopiar = new InterfazCopiar();
 
     /**
      * Creates new form InterfazSeleccion
@@ -40,7 +41,7 @@ public class InterfazSeleccion extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("ESCOGE UNA OPCION");
+        jLabel1.setText("ESCOGE UNA OPCIÓN");
 
         jButton1.setText("Archivo secuencial");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -56,7 +57,7 @@ public class InterfazSeleccion extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("Copiar");
+        jButton3.setText("Copiar o mover");
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jButton3MousePressed(evt);
@@ -131,6 +132,7 @@ public class InterfazSeleccion extends javax.swing.JFrame {
     //               COPIAR
     private void jButton3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MousePressed
         // TODO add your handling code here:
+        interfazCopiar.setVisible(true);
     }//GEN-LAST:event_jButton3MousePressed
 
     /**
