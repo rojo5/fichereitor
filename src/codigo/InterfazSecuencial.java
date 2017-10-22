@@ -6,7 +6,10 @@
 package codigo;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 
 /**
  *
@@ -34,6 +37,11 @@ public class InterfazSecuencial extends javax.swing.JFrame {
                     jDialog1.setVisible(true);
 
                     break;
+                case "Escribir":{
+                    jDialog2.setSize(648, 304);
+                    jDialog2.setVisible(true);
+                    break;
+                }
 
             }
         } catch (Exception e) {
@@ -66,12 +74,12 @@ public class InterfazSecuencial extends javax.swing.JFrame {
     public void buscarFichero(String archivo) {
         String texto = "";
         String textoABuscar = jTextField2.getText();
-
+        Boolean chivato = false;
         try {
             FileReader fr = new FileReader(archivo);
             BufferedReader entrada = new BufferedReader(fr);
             String linea = "";
-            Boolean chivato = false;
+            
             while((linea = entrada.readLine()) != null){
                 
                 
@@ -81,11 +89,12 @@ public class InterfazSecuencial extends javax.swing.JFrame {
                     chivato = true;
                 }
                 
-                if(chivato == false){
-                    texto = "NO SE ENCUENTRA LA PALABRA";
-                }
+                
                 
             }
+            if(chivato == false){
+                    texto = "NO SE ENCUENTRA LA PALABRA";
+                }
             jTextArea1.setText(texto);
             
         } catch (java.io.FileNotFoundException fnfex){
@@ -93,6 +102,27 @@ public class InterfazSecuencial extends javax.swing.JFrame {
         } catch (java.io.IOException ioex) {
         }
 
+    }
+    
+    public void editarArchivo(String archivo, String datos){
+        if(jRadioEscribir.isSelected()){
+            try{
+                FileWriter fr = new FileWriter(archivo, true);
+                BufferedWriter bw = new BufferedWriter(fr);
+                
+                bw.write("\n"+datos);
+                bw.close();
+            }catch (IOException ioex){}
+        }
+        else if(jRadioSobre.isSelected()){
+            try{
+                FileWriter fr = new FileWriter(archivo, false);
+                BufferedWriter bw = new BufferedWriter(fr);
+                
+                bw.write(datos);
+                bw.close();
+            }catch (IOException ioex){}
+        }
     }
 
     /**
@@ -109,6 +139,13 @@ public class InterfazSecuencial extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jDialog2 = new javax.swing.JDialog();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea2 = new javax.swing.JTextArea();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jRadioEscribir = new javax.swing.JRadioButton();
+        jRadioSobre = new javax.swing.JRadioButton();
+        opEscritura = new javax.swing.ButtonGroup();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jComboBox1 = new javax.swing.JComboBox<>();
@@ -150,15 +187,57 @@ public class InterfazSecuencial extends javax.swing.JFrame {
                 .addContainerGap(40, Short.MAX_VALUE))
         );
 
+        jTextArea2.setColumns(20);
+        jTextArea2.setRows(5);
+        jScrollPane2.setViewportView(jTextArea2);
+
+        jButton3.setText("Aceptar");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButton3MousePressed(evt);
+            }
+        });
+
+        jButton4.setText("Cancelar");
+
+        opEscritura.add(jRadioEscribir);
+        jRadioEscribir.setText("Escribir");
+
+        opEscritura.add(jRadioSobre);
+        jRadioSobre.setText("Sobreescribir");
+
         javax.swing.GroupLayout jDialog2Layout = new javax.swing.GroupLayout(jDialog2.getContentPane());
         jDialog2.getContentPane().setLayout(jDialog2Layout);
         jDialog2Layout.setHorizontalGroup(
             jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 646, Short.MAX_VALUE)
+            .addComponent(jScrollPane2)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog2Layout.createSequentialGroup()
+                .addGap(93, 93, 93)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 292, Short.MAX_VALUE)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(99, 99, 99))
+            .addGroup(jDialog2Layout.createSequentialGroup()
+                .addGap(81, 81, 81)
+                .addComponent(jRadioEscribir)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jRadioSobre)
+                .addGap(105, 105, 105))
         );
         jDialog2Layout.setVerticalGroup(
             jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 303, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog2Layout.createSequentialGroup()
+                .addContainerGap(37, Short.MAX_VALUE)
+                .addGroup(jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jRadioEscribir)
+                    .addComponent(jRadioSobre))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -223,7 +302,15 @@ public class InterfazSecuencial extends javax.swing.JFrame {
 
     private void jButton2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MousePressed
         buscarFichero(rutaArchivo);
+        jDialog1.setVisible(false);
     }//GEN-LAST:event_jButton2MousePressed
+ 
+    private void jButton3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MousePressed
+        String datosrecogidos = jTextArea2.getText();
+        editarArchivo(rutaArchivo, datosrecogidos);
+        leerFichero(rutaArchivo);
+        jDialog2.setVisible(false);
+    }//GEN-LAST:event_jButton3MousePressed
 
     /**
      * @param args the command line arguments
@@ -263,14 +350,21 @@ public class InterfazSecuencial extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     public static javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JDialog jDialog2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JRadioButton jRadioEscribir;
+    private javax.swing.JRadioButton jRadioSobre;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.ButtonGroup opEscritura;
     // End of variables declaration//GEN-END:variables
 }
