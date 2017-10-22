@@ -261,7 +261,6 @@ public class InterfazSecuencial extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -273,6 +272,7 @@ public class InterfazSecuencial extends javax.swing.JFrame {
                         .addComponent(jButton1))
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(305, Short.MAX_VALUE))
+            .addComponent(jScrollPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -304,14 +304,14 @@ public class InterfazSecuencial extends javax.swing.JFrame {
         buscarFichero(rutaArchivo);
         jDialog1.setVisible(false);
     }//GEN-LAST:event_jButton2MousePressed
- 
+
     private void jButton3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MousePressed
         String datosrecogidos = jTextArea2.getText();
         editarArchivo(rutaArchivo, datosrecogidos);
         leerFichero(rutaArchivo);
         jDialog2.setVisible(false);
     }//GEN-LAST:event_jButton3MousePressed
-
+ 
     /**
      * @param args the command line arguments
      */

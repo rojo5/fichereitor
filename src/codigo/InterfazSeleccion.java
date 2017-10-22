@@ -14,6 +14,7 @@ public class InterfazSeleccion extends javax.swing.JFrame {
     InterfazSecuencial interfazSecuencial = new InterfazSecuencial();
     InterfazCrear interfazCrear = new InterfazCrear();
     InterfazCopiar interfazCopiar = new InterfazCopiar();
+    InterfazAleatorio interfazAleatorio = new InterfazAleatorio();
 
     /**
      * Creates new form InterfazSeleccion
@@ -121,6 +122,7 @@ public class InterfazSeleccion extends javax.swing.JFrame {
     //               ARCHIVO ALEATORIO
     private void jButton2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MousePressed
         // TODO add your handling code here:
+        interfazAleatorio.setVisible(true);
     }//GEN-LAST:event_jButton2MousePressed
 
     //               CREAR FICHERO O CARPETA
