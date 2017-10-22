@@ -12,6 +12,7 @@ package codigo;
 public class InterfazSeleccion extends javax.swing.JFrame {
     
     InterfazSecuencial interfazSecuencial = new InterfazSecuencial();
+    InterfazCrear interfazCrear = new InterfazCrear();
 
     /**
      * Creates new form InterfazSeleccion
@@ -124,6 +125,7 @@ public class InterfazSeleccion extends javax.swing.JFrame {
     //               CREAR FICHERO O CARPETA
     private void jButton4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MousePressed
         // TODO add your handling code here:
+        interfazCrear.setVisible(true);
     }//GEN-LAST:event_jButton4MousePressed
     
     //               COPIAR
