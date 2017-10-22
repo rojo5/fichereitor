@@ -11,6 +11,7 @@ package codigo;
  */
 public class InterfazSeleccion extends javax.swing.JFrame {
     
+    //Declaración de variables y objetos
     InterfazSecuencial interfazSecuencial = new InterfazSecuencial();
     InterfazCrear interfazCrear = new InterfazCrear();
     InterfazCopiar interfazCopiar = new InterfazCopiar();
@@ -115,25 +116,21 @@ public class InterfazSeleccion extends javax.swing.JFrame {
     
     //               ARCHIVO SECUENCIAL
     private void jButton1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MousePressed
-        // TODO add your handling code here:
         interfazSecuencial.setVisible(true);
     }//GEN-LAST:event_jButton1MousePressed
 
     //               ARCHIVO ALEATORIO
     private void jButton2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MousePressed
-        // TODO add your handling code here:
         interfazAleatorio.setVisible(true);
     }//GEN-LAST:event_jButton2MousePressed
 
     //               CREAR FICHERO O CARPETA
     private void jButton4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MousePressed
-        // TODO add your handling code here:
         interfazCrear.setVisible(true);
     }//GEN-LAST:event_jButton4MousePressed
     
-    //               COPIAR
+    //               COPIAR O MOVER
     private void jButton3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MousePressed
-        // TODO add your handling code here:
         interfazCopiar.setVisible(true);
     }//GEN-LAST:event_jButton3MousePressed
 

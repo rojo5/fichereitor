@@ -17,6 +17,7 @@ import java.io.IOException;
  */
 public class InterfazSecuencial extends javax.swing.JFrame {
 
+    //Declaración de variables y objetos
     String rutaArchivo = "";
 
     /**
@@ -26,6 +27,8 @@ public class InterfazSecuencial extends javax.swing.JFrame {
         initComponents();
     }
 
+    //Metodo para que controla la ruta del archivo y la accion(leer, buscar,
+    //escribir) que se va a realizar
     public void abrirFichero(String archivo, String accion) {
         try {
             switch (accion) {
@@ -37,7 +40,7 @@ public class InterfazSecuencial extends javax.swing.JFrame {
                     jDialog1.setVisible(true);
 
                     break;
-                case "Escribir":{
+                case "Escribir": {
                     jDialog2.setSize(648, 304);
                     jDialog2.setVisible(true);
                     break;
@@ -49,6 +52,8 @@ public class InterfazSecuencial extends javax.swing.JFrame {
         }
     }
 
+    //Abre el archivo y guarda en el buffer cada linea que va almacenando en una
+    //variable y cuando acaba de leer el archivo lo muestra por pantalla
     public void leerFichero(String archivo) {
         String texto = "";
         String aux = "";
@@ -71,6 +76,8 @@ public class InterfazSecuencial extends javax.swing.JFrame {
         }
     }
 
+//Abre el archivo y guarda en el buffer cada linea que va almacenando en una
+    //variable las frases que contengan la palabra almacenada en "textoABuscar"
     public void buscarFichero(String archivo) {
         String texto = "";
         String textoABuscar = jTextField2.getText();
@@ -79,49 +86,51 @@ public class InterfazSecuencial extends javax.swing.JFrame {
             FileReader fr = new FileReader(archivo);
             BufferedReader entrada = new BufferedReader(fr);
             String linea = "";
-            
-            while((linea = entrada.readLine()) != null){
-                
-                
-                if(linea.contains(textoABuscar)){
+
+            while ((linea = entrada.readLine()) != null) {
+
+                if (linea.contains(textoABuscar)) {
                     //jTextArea1.setText(texto += texto + "\n");
                     texto += linea + "\n";
                     chivato = true;
                 }
-                
-                
-                
+
             }
-            if(chivato == false){
-                    texto = "NO SE ENCUENTRA LA PALABRA";
-                }
+            if (chivato == false) {
+                texto = "NO SE ENCUENTRA LA PALABRA";
+            }
             jTextArea1.setText(texto);
-            
-        } catch (java.io.FileNotFoundException fnfex){
-             System.out.println("Archivo no encontrado!!!" + fnfex);
+
+        } catch (java.io.FileNotFoundException fnfex) {
+            System.out.println("Archivo no encontrado!!!" + fnfex);
         } catch (java.io.IOException ioex) {
         }
 
     }
-    
-    public void editarArchivo(String archivo, String datos){
-        if(jRadioEscribir.isSelected()){
-            try{
+
+    //Mediante una opcion con un jRadio elegimos escribir al final del archivo 
+    //o sobreescribir el archivo
+    public void editarArchivo(String archivo, String datos) {
+        if (jRadioEscribir.isSelected()) {
+            //Escribir al final del archivo
+            try {
                 FileWriter fr = new FileWriter(archivo, true);
                 BufferedWriter bw = new BufferedWriter(fr);
-                
-                bw.write("\n"+datos);
+
+                bw.write("\n" + datos);
                 bw.close();
-            }catch (IOException ioex){}
-        }
-        else if(jRadioSobre.isSelected()){
-            try{
+            } catch (IOException ioex) {
+            }
+        } else if (jRadioSobre.isSelected()) {
+            //Sobreescribir el archivo
+            try {
                 FileWriter fr = new FileWriter(archivo, false);
                 BufferedWriter bw = new BufferedWriter(fr);
-                
+
                 bw.write(datos);
                 bw.close();
-            }catch (IOException ioex){}
+            } catch (IOException ioex) {
+            }
         }
     }
 
@@ -199,6 +208,11 @@ public class InterfazSecuencial extends javax.swing.JFrame {
         });
 
         jButton4.setText("Cancelar");
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButton4MousePressed(evt);
+            }
+        });
 
         opEscritura.add(jRadioEscribir);
         jRadioEscribir.setText("Escribir");
@@ -291,6 +305,7 @@ public class InterfazSecuencial extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+
     private void jButton1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MousePressed
         // TODO add your handling code here:
         rutaArchivo = jTextField1.getText();
@@ -303,6 +318,7 @@ public class InterfazSecuencial extends javax.swing.JFrame {
     private void jButton2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MousePressed
         buscarFichero(rutaArchivo);
         jDialog1.setVisible(false);
+        jTextField2.setText("");
     }//GEN-LAST:event_jButton2MousePressed
 
     private void jButton3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MousePressed
@@ -310,8 +326,15 @@ public class InterfazSecuencial extends javax.swing.JFrame {
         editarArchivo(rutaArchivo, datosrecogidos);
         leerFichero(rutaArchivo);
         jDialog2.setVisible(false);
+        jTextArea2.setText("");
     }//GEN-LAST:event_jButton3MousePressed
- 
+
+    private void jButton4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MousePressed
+        // TODO add your handling code here:
+        jDialog2.setVisible(false);
+        jTextArea2.setText("");
+    }//GEN-LAST:event_jButton4MousePressed
+
     /**
      * @param args the command line arguments
      */

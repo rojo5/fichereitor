@@ -24,57 +24,57 @@ public class InterfazCopiar extends javax.swing.JFrame {
     public InterfazCopiar() {
         initComponents();
     }
-    
-    public boolean copiarFichero(String origen, String destino){
+
+    //Almacena cada byte de un fichero en el buffer y lo copia en el nuevo 
+    //archivo 
+    public boolean copiarFichero(String origen, String destino) {
         File _origen = new File(origen);
         File _destino = new File(destino);
-        
-        if(_origen.exists()){
-            try{
+        //comprueba si fichero existe y de ser así lo copia
+        if (_origen.exists()) {
+            try {
                 InputStream entrada = new FileInputStream(_origen);
                 OutputStream salida = new FileOutputStream(_destino);
                 byte[] buf = new byte[1024];
                 int contador;
-                while ((contador = entrada.read(buf)) > 0){
+                while ((contador = entrada.read(buf)) > 0) {
                     salida.write(buf, 0, contador);
                 }
                 entrada.close();
                 salida.close();
-                return true;
-            }catch(IOException ioex){
-                 ioex.printStackTrace();
+                return true; //Todo sale bien
+            } catch (IOException ioex) {
+                ioex.printStackTrace();
                 System.out.println("Fallo al copiar");
                 return false;
             }
-        }
-        else{
+        } else {
             return false;
         }
     }
-    
-    public boolean moverFichero (String origen, String destino){
+
+    public boolean moverFichero(String origen, String destino) {
         File _origen = new File(origen);
         File _destino = new File(destino);
-        
-        if(_origen.exists()){
-            try{
+        //comprueba si fichero existe y de ser así lo mueve
+        if (_origen.exists()) {
+            try {
                 InputStream entrada = new FileInputStream(_origen);
                 OutputStream salida = new FileOutputStream(_destino);
                 byte[] buf = new byte[1024];
                 int contador;
-                while ((contador = entrada.read(buf)) > 0){
+                while ((contador = entrada.read(buf)) > 0) {
                     salida.write(buf, 0, contador);
                 }
                 entrada.close();
                 salida.close();
-                return _origen.delete();
-            }catch(IOException ioex){
-                 ioex.printStackTrace();
+                return _origen.delete(); // Todo sale bien
+            } catch (IOException ioex) {
+                ioex.printStackTrace();
                 System.out.println("Fallo al copiar");
                 return false;
             }
-        }
-        else{
+        } else {
             return false;
         }
     }
@@ -366,13 +366,14 @@ public class InterfazCopiar extends javax.swing.JFrame {
         // TODO add your handling code here:
         String rutaOrigen = jTextField1.getText();
         String rutaDestino = jTextField2.getText();
-        
-        if(copiarFichero(rutaOrigen, rutaDestino)){
-            copiaCorrecta.setSize(440,200);
+
+        if (copiarFichero(rutaOrigen, rutaDestino)) {
+            copiaCorrecta.setSize(440, 200);
             copiaCorrecta.setVisible(true);
-        }
-        else{
-            copiaFallo.setSize(440,200);
+            jTextField1.setText("");
+            jTextField2.setText("");
+        } else {
+            copiaFallo.setSize(440, 200);
             copiaFallo.setVisible(true);
         }
     }//GEN-LAST:event_jButton1MousePressed
@@ -388,18 +389,19 @@ public class InterfazCopiar extends javax.swing.JFrame {
 
     private void jButton2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MousePressed
         // TODO add your handling code here:
-         String rutaOrigen2 = jTextField3.getText();
+        String rutaOrigen2 = jTextField3.getText();
         String rutaDestino2 = jTextField4.getText();
-        
-        if(moverFichero(rutaOrigen2, rutaDestino2)){
+
+        if (moverFichero(rutaOrigen2, rutaDestino2)) {
             moverCorrecto.setSize(440, 200);
             moverCorrecto.setVisible(true);
-        }
-        else{
+            jTextField3.setText("");
+            jTextField4.setText("");
+        } else {
             moverFallo.setSize(440, 200);
             moverFallo.setVisible(true);
         }
-        
+
     }//GEN-LAST:event_jButton2MousePressed
 
     private void jButton5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MousePressed

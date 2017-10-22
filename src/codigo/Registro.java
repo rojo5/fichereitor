@@ -15,9 +15,11 @@ import java.io.RandomAccessFile;
  */
 public class Registro {
 
+    //Declararcion de variables
     protected char nombre[];
     protected float parcial1, parcial2, talleres, proyecto;
-    static int num;
+
+    //Constructores
     public Registro() {
     }
 
@@ -30,29 +32,30 @@ public class Registro {
         talleres = nota3;
         proyecto = nota4;
     }
-    
+
     public static void grabarRegistro(RandomAccessFile aa, Registro estudiante) throws IOException {
-            int longitud = (int)aa.length();
-            aa.seek(longitud); 
-            
-            for (int i=0; i < (estudiante.nombre).length ; i++){
-                aa.writeChar(estudiante.nombre[i]); 
-            }
-            aa.writeFloat(estudiante.parcial1); 
-            aa.writeFloat(estudiante.parcial2); 
-            aa.writeFloat(estudiante.talleres); 
-            aa.writeFloat(estudiante.proyecto); 
+        //Ir al final del archivo
+        int longitud = (int) aa.length();
+        aa.seek(longitud);
 
-            //longitud = (int) aa.length();
-           // System.out.println("length file: " + longitud);
-
+        //Escribir datos del registro en el archivo
+        for (int i = 0; i < (estudiante.nombre).length; i++) {
+            aa.writeChar(estudiante.nombre[i]);
         }
-    
+        aa.writeFloat(estudiante.parcial1);
+        aa.writeFloat(estudiante.parcial2);
+        aa.writeFloat(estudiante.talleres);
+        aa.writeFloat(estudiante.proyecto);
+
+        //longitud = (int) aa.length();
+        // System.out.println("length file: " + longitud);
+    }
+
     public static String[] leerDatos(RandomAccessFile aa, File fal) throws IOException {
         int longitud = (int) fal.length();
         int lreg = 66; //lo que ocupa un registro
         int regs = longitud / lreg; // numero de registros en el fichero
-        num = regs;
+
         String contenido[] = new String[regs];
         System.out.println("Número total de registros en el fichero: " + regs);
         System.out.println("Cada registro ocupa: " + lreg);
@@ -61,14 +64,15 @@ public class Registro {
             Registro vector[] = leerRegistro(aa, regs, lreg);
             for (int i = 0; i < regs; i++) {
                 String nom = new String(vector[i].nombre);
-                contenido[i]= (nom + " " + vector[i].parcial1 + " " + vector[i].parcial2 + " " + vector[i].talleres + " " + vector[i].proyecto);
+                //Almacenamos todos los registros en un array para pasarselo a la clase interfazAleatorio
+                contenido[i] = (nom + " " + vector[i].parcial1 + " " + vector[i].parcial2 + " " + vector[i].talleres + " " + vector[i].proyecto);
             }
         } else {
             System.out.println("Archivo vacio !!!");
 
         }
-        return  contenido;
-            
+        return contenido; //Devuelve todos los registros
+
     }
 
     public static Registro[] leerRegistro(RandomAccessFile aa, int regs, int lreg) throws IOException {
@@ -76,13 +80,14 @@ public class Registro {
         Registro vector[] = new Registro[regs];
         aa.seek(0);
 
+        //Leemos todos los datos
         for (int i = 0; i < regs; i++) {
             char nombre[] = new char[25];
             for (int k = 0; k < nombre.length; k++) {
                 nombre[k] = aa.readChar();
             }
             String aux = new String(nombre);
-            float nota1 = aa.readFloat(); //leemos las 4 notas.
+            float nota1 = aa.readFloat();
             float nota2 = aa.readFloat();
             float nota3 = aa.readFloat();
             float nota4 = aa.readFloat();
@@ -91,7 +96,7 @@ public class Registro {
 
             vector[i] = datos;
         }
-        return vector;
+        return vector; //devuelve un registros
 
     }
 }

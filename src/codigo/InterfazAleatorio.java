@@ -16,10 +16,10 @@ import java.util.logging.Logger;
  * @author Usuario
  */
 public class InterfazAleatorio extends javax.swing.JFrame {
-    
-        String rutaArchivo = "";
-        Registro miRegistro;
-        
+
+    String rutaArchivo = "";
+    Registro miRegistro;
+
     /**
      * Creates new form InterfazAleatorio
      */
@@ -27,14 +27,13 @@ public class InterfazAleatorio extends javax.swing.JFrame {
         initComponents();
     }
 
-    
-    public void abrirfichero(String archivo, String item) throws IOException{
+    public void abrirfichero(String archivo, String item) throws IOException {
         File ff = new File(archivo);
         RandomAccessFile aa = new RandomAccessFile(ff, "rw");
-        switch(item){
+        switch (item) {
             case "Leer":
-               //jTextArea1.setText(Registro.leerDatos(aa, ff)); 
-                leer(ff,aa);
+                //jTextArea1.setText(Registro.leerDatos(aa, ff)); 
+                leer(ff, aa);
                 break;
             case "Escribir":
                 jDialog1.setSize(212, 286);
@@ -42,39 +41,37 @@ public class InterfazAleatorio extends javax.swing.JFrame {
                 break;
         }
     }
-    
-    public void leer(File ff, RandomAccessFile aa)throws IOException{
+
+    public void leer(File ff, RandomAccessFile aa) throws IOException {
         int tamanio = Registro.leerDatos(aa, ff).length;
-       //int tamanio = Registro.num;
+        //int tamanio = Registro.num;
         String aux[] = new String[tamanio];
-        String texto="";
+        String texto = "";
         //System.out.println(tamanio);
         aux = Registro.leerDatos(aa, ff);
-        for(int i = 0; i<tamanio;i++){
-           //jTextArea1.setText(texto[i]);
-           texto += aux[i] + "\n";
+        for (int i = 0; i < tamanio; i++) {
+            //jTextArea1.setText(texto[i]);
+            texto += aux[i] + "\n";
         }
         jTextArea1.setText(texto);
     }
-    
-    public void escribir(String nombre, float nota1, float nota2, float nota3, float nota4 ) throws IOException{
+
+    public void escribir(String nombre, float nota1, float nota2, float nota3, float nota4) throws IOException {
         File ff = new File(rutaArchivo);
         RandomAccessFile aa = new RandomAccessFile(ff, "rw");
         char caracter[] = new char[25];
         //caracter = nombre.toCharArray();
-        
-        for(int i = 0; i< nombre.length();i++){
+
+        for (int i = 0; i < nombre.length(); i++) {
             caracter[i] = nombre.charAt(i);
         }
-        
-        miRegistro = new Registro(caracter,nota1,nota2,nota3,nota4);
-        
+
+        miRegistro = new Registro(caracter, nota1, nota2, nota3, nota4);
+
         Registro.grabarRegistro(aa, miRegistro);
         jDialog1.setVisible(false);
     }
-    
-    
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -234,11 +231,11 @@ public class InterfazAleatorio extends javax.swing.JFrame {
         // TODO add your handling code here:
         rutaArchivo = jTextField1.getText();
         String itemMarcado = jComboBox1.getSelectedItem().toString();
-            try {
-                abrirfichero(rutaArchivo, itemMarcado);
-            } catch (IOException ex) {
-                Logger.getLogger(InterfazAleatorio.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        try {
+            abrirfichero(rutaArchivo, itemMarcado);
+        } catch (IOException ex) {
+            Logger.getLogger(InterfazAleatorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton1MousePressed
 
     private void jButton2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MousePressed
@@ -248,12 +245,18 @@ public class InterfazAleatorio extends javax.swing.JFrame {
         Float nota2 = Float.parseFloat(jTextField4.getText());
         Float nota3 = Float.parseFloat(jTextField5.getText());
         Float nota4 = Float.parseFloat(jTextField6.getText());
-            try {
-                escribir(nombre, nota1, nota2, nota3, nota4);
-            } catch (IOException ex) {
-                Logger.getLogger(InterfazAleatorio.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        
+        try {
+            escribir(nombre, nota1, nota2, nota3, nota4);
+            jTextField2.setText("");
+            jTextField3.setText("");
+            jTextField4.setText("");
+            jTextField5.setText("");
+            jTextField6.setText("");
+        } catch (IOException ex) {
+            Logger.getLogger(InterfazAleatorio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
     }//GEN-LAST:event_jButton2MousePressed
 
     /**
